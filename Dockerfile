@@ -3,14 +3,10 @@ FROM n8nio/n8n:latest
 
 # Switch to root to install the utility
 USER root
-
-# Install the basic utilities
-RUN apt-get update && apt-get install -y \
+RUN apk update && apk add --no-cache \
     bash \
     curl \
-    nano \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    nano
 
 # Create working folder for data n8n
 RUN mkdir -p /home/node/.n8n
