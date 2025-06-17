@@ -1,14 +1,14 @@
 ARG NODE_VERSION=20
-FROM n8nio/base:${NODE_VERSION}
+FROM n8nio/base:latest
 
 ARG N8N_VERSION=1.89.2
-RUN if [ -z "$N8N_VERSION" ] ; then echo "The N8N_VERSION argument is missing!" ; exit 1; fi
+RUN if [ -z "$N8N_latest" ] ; then echo "The N8N_VERSION argument is missing!" ; exit 1; fi
 
 LABEL org.opencontainers.image.title="n8n"
 LABEL org.opencontainers.image.description="Workflow Automation Tool"
 LABEL org.opencontainers.image.source="https://github.com/n8n-io/n8n"
 LABEL org.opencontainers.image.url="https://n8n.io"
-LABEL org.opencontainers.image.version=${N8N_VERSION}
+LABEL org.opencontainers.image.version=${N8N_latest}
 
 ENV N8N_VERSION=${N8N_VERSION}
 ENV NODE_ENV=production
@@ -21,3 +21,4 @@ RUN chmod +x /docker-entrypoint.sh
 ENV SHELL /bin/sh
 USER node
 ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]
+EXPOSE 5678
